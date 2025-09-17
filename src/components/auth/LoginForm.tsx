@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { User, Shield, Heart } from "lucide-react";
+import { motion } from "framer-motion";
+import { Leaf, User, Shield, Eye, EyeOff } from "lucide-react";
 
 export interface User {
   id: string;
@@ -21,113 +21,162 @@ interface LoginFormProps {
 const LoginForm = ({ onLogin }: LoginFormProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<'patient' | 'practitioner'>('patient');
-  const [isLoading, setIsLoading] = useState(false);
+  const [role, setRole] = useState<"patient" | "practitioner">("patient");
+  const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
-
-  // Mock users for demo
-  const mockUsers = {
-    patient: { id: '1', username: 'patient', password: 'demo', role: 'patient' as const, fullName: 'Sarah Johnson' },
-    practitioner: { id: '2', username: 'practitioner', password: 'demo', role: 'practitioner' as const, fullName: 'Dr. Priya Sharma' }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    // Simple auth simulation
-    setTimeout(() => {
-      const mockUser = mockUsers[role];
-      if (username === mockUser.username && password === mockUser.password) {
-        onLogin(mockUser);
-        toast({
-          title: "Welcome back!",
-          description: `Logged in as ${mockUser.fullName}`,
-        });
-      } else {
-        toast({
-          title: "Authentication failed",
-          description: "Invalid credentials. Try 'demo' for both fields.",
-          variant: "destructive",
-        });
-      }
-      setIsLoading(false);
-    }, 1000);
+    
+    // Simple demo authentication
+    if ((username === "patient" || username === "practitioner") && password === "demo") {
+      const user: User = {
+        id: role === "patient" ? "1" : "2",
+        username: role,
+        role: role,
+        fullName: role === "patient" ? "Sarah Johnson" : "Dr. Priya Sharma"
+      };
+      
+      onLogin(user);
+      toast({
+        title: "Welcome!",
+        description: `Logged in as ${user.fullName}`,
+      });
+    } else {
+      toast({
+        title: "Authentication failed",
+        description: "Use 'patient' or 'practitioner' with password 'demo'",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-calm flex items-center justify-center p-4">
-      <Card className="w-full max-w-md shadow-warm">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 w-16 h-16 bg-gradient-healing rounded-full flex items-center justify-center">
-            <Heart className="w-8 h-8 text-primary-foreground" />
-          </div>
-          <CardTitle className="text-2xl font-bold text-primary">AyurVeda Clinic</CardTitle>
-          <CardDescription>Welcome to your healing journey</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="role">I am a:</Label>
-              <Select value={role} onValueChange={(value: 'patient' | 'practitioner') => setRole(value)}>
-                <SelectTrigger className="w-full">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="patient">
-                    <div className="flex items-center gap-2">
-                      <User className="w-4 h-4" />
-                      Patient
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="practitioner">
-                    <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4" />
-                      Practitioner
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-background via-muted/30 to-accent/20">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-calm opacity-60" />
+      <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-md"
+        >
+          {/* Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-center mb-8"
+          >
+            <div className="flex items-center justify-center mb-4">
+              <div className="bg-gradient-healing p-3 rounded-full shadow-gentle">
+                <Leaf className="w-8 h-8 text-white" />
+              </div>
             </div>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              🌿 Panchakarma
+            </h1>
+            <p className="text-muted-foreground">
+              Smart Ayurveda Therapy Scheduling for Holistic Care
+            </p>
+          </motion.div>
 
-            <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
-              <Input
-                id="username"
-                type="text"
-                placeholder="Enter username (demo: patient/practitioner)"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
+          <Card className="shadow-warm border-0 bg-card/80 backdrop-blur-sm">
+            <CardHeader className="text-center pb-4">
+              <CardTitle className="text-xl font-semibold text-foreground">Welcome Back</CardTitle>
+              <CardDescription>Sign in to continue your wellness journey</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Role Toggle */}
+                <div className="flex items-center space-x-1 bg-muted/50 p-1 rounded-lg mb-6">
+                  <motion.button
+                    type="button"
+                    onClick={() => setRole("patient")}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${
+                      role === "patient" 
+                        ? "bg-primary text-primary-foreground shadow-sm" 
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <User className="w-4 h-4" />
+                    Patient
+                  </motion.button>
+                  <motion.button
+                    type="button"
+                    onClick={() => setRole("practitioner")}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${
+                      role === "practitioner" 
+                        ? "bg-primary text-primary-foreground shadow-sm" 
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Shield className="w-4 h-4" />
+                    Practitioner
+                  </motion.button>
+                </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter password (demo: demo)"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+                <div className="space-y-2">
+                  <Label htmlFor="username" className="text-foreground">Username</Label>
+                  <Input
+                    id="username"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    className="transition-gentle border-border/50 focus:border-primary"
+                    placeholder="Enter your username"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="password" className="text-foreground">Password</Label>
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className="transition-gentle border-border/50 focus:border-primary pr-10"
+                      placeholder="Enter your password"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
 
-            <Button 
-              type="submit" 
-              className="w-full bg-gradient-healing hover:bg-primary/90 transition-gentle"
-              disabled={isLoading}
-            >
-              {isLoading ? "Signing in..." : "Sign In"}
-            </Button>
-
-            <div className="text-sm text-muted-foreground text-center">
-              Demo credentials: username & password both "demo"
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-healing hover:bg-primary/90 transition-gentle shadow-gentle text-white font-medium"
+                  >
+                    Sign In
+                  </Button>
+                </motion.div>
+                
+                <div className="text-center text-sm text-muted-foreground mt-4">
+                  Demo: Use "patient" or "practitioner" with password "demo"
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
     </div>
   );
 };
