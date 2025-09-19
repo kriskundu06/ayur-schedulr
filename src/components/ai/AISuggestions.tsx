@@ -78,7 +78,7 @@ const AISuggestions = ({ existingEvents, userRole }: AISuggestionsProps) => {
         therapy: 'Panchakarma Therapy',
         reason: 'Complete detoxification and cleansing treatment',
         duration: '120 minutes',
-        icon: '🌿'
+        icon: '💆'
       };
     }
     

@@ -79,7 +79,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
               </div>
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-2">
-              🌿 Panchakarma
+              AyurSutra
             </h1>
             <p className="text-muted-foreground">
               Smart Ayurveda Therapy Scheduling for Holistic Care

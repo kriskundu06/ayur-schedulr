@@ -27,7 +27,7 @@ const Landing = ({ onGetStarted }: LandingProps) => {
   ];
 
   const therapies = [
-    { name: "Panchakarma", icon: "🌿", duration: "2h", popularity: 95 },
+    { name: "Panchakarma", icon: "💆", duration: "2h", popularity: 95 },
     { name: "Shirodhara", icon: "🧘‍♀️", duration: "75min", popularity: 88 },
     { name: "Abhyanga", icon: "💆‍♀️", duration: "90min", popularity: 92 },
     { name: "Nasya", icon: "🌬️", duration: "45min", popularity: 75 }
@@ -67,7 +67,7 @@ const Landing = ({ onGetStarted }: LandingProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              🌿 Panchakarma
+              AyurSutra
             </motion.h1>
             
             <motion.p 
@@ -126,7 +126,7 @@ const Landing = ({ onGetStarted }: LandingProps) => {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              Why Choose Panchakarma?
+              Why Choose AyurSutra?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Combining traditional Ayurvedic wisdom with modern technology for the ultimate healing experience

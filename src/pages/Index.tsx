@@ -16,24 +16,24 @@ const Index = () => {
 
   // Check for existing session on load
   useEffect(() => {
-    const savedUser = localStorage.getItem("panchakarma_user");
+    const savedUser = localStorage.getItem("ayursutra_user");
     if (savedUser) {
       try {
         setUser(JSON.parse(savedUser));
       } catch (error) {
         console.error("Error parsing saved user:", error);
-        localStorage.removeItem("panchakarma_user");
+        localStorage.removeItem("ayursutra_user");
       }
     }
   }, []);
 
   const handleLogin = (userData: User) => {
     setUser(userData);
-    localStorage.setItem("panchakarma_user", JSON.stringify(userData));
+    localStorage.setItem("ayursutra_user", JSON.stringify(userData));
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("panchakarma_user");
+    localStorage.removeItem("ayursutra_user");
     setUser(null);
     setShowLogin(false);
   };

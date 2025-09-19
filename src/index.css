@@ -16,10 +16,10 @@
     --popover: 45 25% 98%;
     --popover-foreground: 120 25% 15%;
 
-    /* Forest green primary - representing nature and healing */
-    --primary: 120 60% 25%;
-    --primary-foreground: 45 25% 98%;
-    --primary-glow: 120 40% 45%;
+    /* Teal primary - representing nature and healing */
+    --primary: 174 95% 33%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 174 75% 45%;
 
     /* Warm beige secondary */
     --secondary: 35 25% 88%;
@@ -82,9 +82,9 @@
     --popover: 120 15% 10%;
     --popover-foreground: 45 25% 95%;
 
-    --primary: 120 50% 65%;
-    --primary-foreground: 120 15% 8%;
-    --primary-glow: 120 40% 55%;
+    --primary: 174 75% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 174 65% 65%;
 
     --secondary: 120 10% 18%;
     --secondary-foreground: 45 25% 95%;
