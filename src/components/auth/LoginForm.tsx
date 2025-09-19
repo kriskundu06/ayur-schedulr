@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { Leaf, User, Shield, Eye, EyeOff } from "lucide-react";
+import { User, Shield, Eye, EyeOff } from "lucide-react";
+import ayursutraLogo from "@/assets/ayursutra-logo.png";
 
 export interface User {
   id: string;
@@ -74,9 +75,11 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
             className="text-center mb-8"
           >
             <div className="flex items-center justify-center mb-4">
-              <div className="bg-gradient-healing p-3 rounded-full shadow-gentle">
-                <Leaf className="w-8 h-8 text-white" />
-              </div>
+              <img 
+                src={ayursutraLogo} 
+                alt="AyurSutra Logo" 
+                className="w-16 h-16 object-contain"
+              />
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-2">
               AyurSutra

@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, Calendar, Heart, Users, Star, CheckCircle } from "lucide-react";
+import { Calendar, Heart, Users, Star, CheckCircle } from "lucide-react";
+import ayursutraLogo from "@/assets/ayursutra-logo.png";
 
 interface LandingProps {
   onGetStarted: () => void;
@@ -56,9 +57,11 @@ const Landing = ({ onGetStarted }: LandingProps) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="bg-gradient-healing p-4 rounded-full shadow-warm">
-                <Leaf className="w-12 h-12 text-white" />
-              </div>
+              <img 
+                src={ayursutraLogo} 
+                alt="AyurSutra Logo" 
+                className="w-24 h-24 object-contain"
+              />
             </motion.div>
             
             <motion.h1 
