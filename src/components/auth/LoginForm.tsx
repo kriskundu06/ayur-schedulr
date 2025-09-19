@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { User, Shield, Eye, EyeOff } from "lucide-react";
-import ayursutraLogo from "@/assets/ayursutra-logo.png";
+import ayursutraLogo from "@/assets/ayursutra-logo-circle.png";
 
 export interface User {
   id: string;

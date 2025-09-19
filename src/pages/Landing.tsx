@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Heart, Users, Star, CheckCircle } from "lucide-react";
-import ayursutraLogo from "@/assets/ayursutra-logo.png";
+import ayursutraLogo from "@/assets/ayursutra-logo-circle.png";
 
 interface LandingProps {
   onGetStarted: () => void;
