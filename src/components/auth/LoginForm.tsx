@@ -78,7 +78,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
               <img 
                 src={ayursutraLogo} 
                 alt="AyurSutra Logo" 
-                className="w-16 h-16 object-contain"
+                className="w-16 h-16 rounded-full object-cover"
               />
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-2">

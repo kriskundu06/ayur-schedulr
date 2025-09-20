@@ -60,7 +60,7 @@ const Landing = ({ onGetStarted }: LandingProps) => {
               <img 
                 src={ayursutraLogo} 
                 alt="AyurSutra Logo" 
-                className="w-24 h-24 object-contain"
+                className="w-24 h-24 rounded-full object-cover"
               />
             </motion.div>
             
